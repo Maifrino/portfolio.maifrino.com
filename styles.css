@@ -226,7 +226,16 @@ a.card:hover { border-color: var(--accent); }
   padding-block: 26px 36px; margin-top: 30px;
   font-size: 0.93rem; color: var(--muted);
 }
-.site-foot a { color: var(--muted); text-decoration: underline; }
+/* Same 44px tap target as the nav. The links row becomes a flex line so the
+   taller links and the "·" between them still sit on one centre line. */
+/* Direct child only: <span id="year"> is the lone element inside the
+   copyright line, so a plain span:last-child also matched it and turned
+   the year into a flex box, breaking that line into three. */
+.site-foot > span:last-child { display: flex; align-items: center; flex-wrap: wrap; column-gap: 4px; }
+.site-foot a {
+  color: var(--muted); text-decoration: underline;
+  display: inline-flex; align-items: center; min-height: 44px;
+}
 .site-foot a:hover { color: var(--accent); }
 
 /* ---------- wider screens ---------- */
