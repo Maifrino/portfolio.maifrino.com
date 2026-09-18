@@ -154,6 +154,11 @@ em { font-style: italic; font-weight: 500; }
 /* ---------- work cards ---------- */
 
 .cards { display: grid; gap: 20px; }
+
+/* A filtered-out card carries the hidden attribute. The UA rule for [hidden]
+   is display:none, but .card sets display:flex and a class beats it, so the
+   card stayed on screen while only the counter moved. */
+[hidden] { display: none !important; }
 .card {
   background: var(--surface); border: 1px solid var(--line);
   border-radius: 18px; overflow: hidden;

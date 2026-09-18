@@ -49,7 +49,7 @@
     <p class="count" aria-live="polite">Showing <strong id="shown">15</strong> of 15</p>
     <div class="cards" id="cards">
 
-      <article class="card" id="mint-payments-multi-market-payments" data-cat="fintech">
+      <article class="card" id="mint-payments-multi-market-payments" data-cat="fintech licensing aml">
         <img src="assets/work/mint.jpg" alt="" loading="lazy">
         <div class="card-body">
           <p class="eyebrow">Fintech · current</p>
@@ -66,7 +66,7 @@
         </div>
       </article>
 
-      <article class="card" id="hnry-risk-compliance-from-zero" data-cat="fintech">
+      <article class="card" id="hnry-risk-compliance-from-zero" data-cat="fintech aml">
         <img src="assets/work/hnry-dept.jpg" alt="" loading="lazy">
         <div class="card-body">
           <p class="eyebrow">Fintech</p>
@@ -83,7 +83,7 @@
         </div>
       </article>
 
-      <article class="card" id="hnry-debit-card-licences" data-cat="licensing">
+      <article class="card" id="hnry-debit-card-licences" data-cat="fintech licensing">
         <img src="assets/work/hnry-cards.jpg" alt="" loading="lazy">
         <div class="card-body">
           <p class="eyebrow">Licensing</p>
@@ -100,7 +100,7 @@
         </div>
       </article>
 
-      <article class="card" id="hnry-uk-market-launch" data-cat="licensing">
+      <article class="card" id="hnry-uk-market-launch" data-cat="fintech licensing">
         <img src="assets/work/hnry-uk.jpg" alt="" loading="lazy">
         <div class="card-body">
           <p class="eyebrow">Expansion · UK</p>
@@ -117,7 +117,7 @@
         </div>
       </article>
 
-      <article class="card" id="gobank-restricted-adi-licence" data-cat="licensing">
+      <article class="card" id="gobank-restricted-adi-licence" data-cat="fintech licensing">
         <img src="assets/work/gobank-radi.jpg" alt="" loading="lazy">
         <div class="card-body">
           <p class="eyebrow">ADI · APRA</p>
@@ -168,7 +168,7 @@
         </div>
       </article>
 
-      <article class="card" id="hsbc-brazil-fatca" data-cat="aml">
+      <article class="card" id="hsbc-brazil-fatca" data-cat="banks">
         <img src="assets/work/hsbc-fatca.jpg" alt="" loading="lazy">
         <div class="card-body">
           <p class="eyebrow">Tax · compliance</p>
@@ -202,7 +202,7 @@
         </div>
       </article>
 
-      <article class="card" id="ofx-three-lines-of-defence" data-cat="banks">
+      <article class="card" id="ofx-three-lines-of-defence" data-cat="aml">
         <img src="assets/work/ofx-3lod.jpg" alt="" loading="lazy">
         <div class="card-body">
           <p class="eyebrow">Governance</p>
@@ -334,7 +334,9 @@
   function apply(filter) {
     var n = 0;
     cards.forEach(function (c) {
-      var on = filter === 'all' || c.dataset.cat === filter;
+      // A project sits in several buckets: Mint is fintech, licensing AND aml.
+      var cats = (c.dataset.cat || '').split(/\s+/);
+      var on = filter === 'all' || cats.indexOf(filter) !== -1;
       c.hidden = !on;
       if (on) n++;
     });
