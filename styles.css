@@ -66,7 +66,9 @@ em { font-style: italic; font-weight: 500; }
 .site-head {
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px; flex-wrap: wrap;
-  padding: 20px 0;
+  /* padding-block, never the shorthand: .wrap owns the side gutter and a
+     shorthand here would zero it, putting the name against the screen edge. */
+  padding-block: 20px;
 }
 .brand {
   font-family: var(--serif); font-size: 1.4rem; font-weight: 500;
@@ -74,6 +76,8 @@ em { font-style: italic; font-weight: 500; }
 }
 .nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 1rem; }
+/* A 19x25px "CV" link is not tappable. Grow the hit area, not the type. */
+.nav a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 2px; }
 .nav a:hover { color: var(--accent); }
 .nav .btn { font-size: 0.95rem; }
 
@@ -99,7 +103,7 @@ em { font-style: italic; font-weight: 500; }
 
 /* ---------- hero ---------- */
 
-.hero { display: grid; gap: 28px; padding: 16px 0 44px; }
+.hero { display: grid; gap: 28px; padding-block: 16px 44px; }
 .hero-text { display: flex; flex-direction: column; gap: 20px; }
 .hero-photo {
   width: 100%; max-width: min(430px, 100%); aspect-ratio: 1; object-fit: cover;
@@ -120,7 +124,9 @@ em { font-style: italic; font-weight: 500; }
 
 /* ---------- sections ---------- */
 
-.section { padding: 52px 0 0; }
+/* padding-block only: .wrap owns the side gutter and a shorthand wipes it,
+   which put every heading and card flush against the phone's edge. */
+.section { padding-block: 52px 0; }
 .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
 
 .about { display: grid; gap: 22px; }
@@ -217,7 +223,7 @@ a.card:hover { border-color: var(--accent); }
 
 .site-foot {
   display: flex; flex-direction: column; gap: 8px;
-  padding: 26px 0 36px; margin-top: 30px;
+  padding-block: 26px 36px; margin-top: 30px;
   font-size: 0.93rem; color: var(--muted);
 }
 .site-foot a { color: var(--muted); text-decoration: underline; }
@@ -245,7 +251,7 @@ a.card:hover { border-color: var(--accent); }
   .hero-photo { justify-self: end; }
   .about { grid-template-columns: 1fr 2fr; gap: 40px; }
   .cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .section { padding: 68px 0 0; }
+  .section { padding-block: 68px 0; }
 }
 
 /* ---------- printing ---------- */
